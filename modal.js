@@ -18,15 +18,18 @@
     function onClick(e) {
 
       // If the user wants to open the link in a new window, let the browser handle it.
-      if (e.shiftKey || e.ctrlKey || e.altKey || e.metaKey) return;
+      if (e && (e.shiftKey || e.ctrlKey || e.altKey || e.metaKey)) return;
 
-      // If the window is small, we probably donâ€™t want to
+      // If the window is small, we probably don’t want to
       // complicate things, so let the browser handle the click.
       var width = (window.innerWidth < screen.width) ? window.innerWidth : screen.width;
       if (width < 500) return;
 
       if (e) e.preventDefault();
 
+      show();
+    };
+    function show() {
       if (!rendered) {
         sendRequest();
       } else {
@@ -90,7 +93,17 @@
       chrome.appendChild(p);
       var closeButton = document.createElement("a");
       closeButton.href = "#close";
-      closeButton.appendChild(document.createTextNode("close (x)"));
+      closeButton.appendChild(document.createTextNode("Close this window"));
+      p.appendChild(closeButton);
+      closeButton.addEventListener("click", onCloseButtonClick, false);
+
+      // Create another close link.
+      p = document.createElement("p");
+      p.className = "modal-close-corner";
+      chrome.appendChild(p);
+      var closeButton = document.createElement("a");
+      closeButton.href = "#close";
+      closeButton.appendChild(document.createTextNode("Close this window"));
       p.appendChild(closeButton);
       closeButton.addEventListener("click", onCloseButtonClick, false);
 
@@ -140,6 +153,11 @@
     };
 
     initialize();
+
+    return {
+      show: show
+    };
+
   };
 
   (function() {

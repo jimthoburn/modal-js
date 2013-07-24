@@ -35,14 +35,46 @@
   box-shadow          : rgba(0, 0, 0, 0.5) 0 0 15px;
 }
 .modal-close {
-  font-size:.8em;
-  position:absolute;
-  top:0; right:10px;
-  /*margin: 3em -3em -2.5em;
-  padding: 0.5em 3em;
-  text-align: center;*/
+  margin: 3em -3em -3em;
+  padding: 1em 3em;
+  text-align: center;
+  max-width: none;
+  background: rgb(251, 251, 251);
+  -webkit-border-bottom-right-radius: 0.25em;
+  -webkit-border-bottom-left-radius: 0.25em;
+  -moz-border-radius-bottomright: 0.25em;
+  -moz-border-radius-bottomleft: 0.25em;
+  border-bottom-right-radius: 0.25em;
+  border-bottom-left-radius: 0.25em;
 }
 .modal-close a {
   color: rgb(100, 100, 100);
   text-decoration: underline;
 }
+.modal-close-corner {
+  margin-top: 0;
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+}
+.modal-close-corner a {
+  display: block;
+  background: transparent url(close.svg) center no-repeat;
+  background-size: 0.75em auto;
+  width: 2em;
+  height: 2em;
+  text-indent: -9999px;
+  overflow: hidden;
+  opacity: 0.5;
+  -webkit-transition : opacity 0.2s;
+  -moz-transition    : opacity 0.2s;
+  -ms-transition     : opacity 0.2s;
+  -o-transition      : opacity 0.2s;
+  transition         : opacity 0.2s;
+}
+.modal-close-corner a:hover,
+.modal-close-corner a:active,
+.modal-close-corner a:focus {
+  opacity: 1;
+}
+
